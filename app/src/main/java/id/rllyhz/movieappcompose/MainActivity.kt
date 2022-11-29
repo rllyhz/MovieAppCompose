@@ -1,29 +1,23 @@
 package id.rllyhz.movieappcompose
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import id.rllyhz.movieappcompose.data.MovieRepositoryImpl
+import id.rllyhz.movieappcompose.ui.page.DetailPage
+import id.rllyhz.movieappcompose.ui.page.MainPage
+import id.rllyhz.movieappcompose.ui.page.detailPageRoute
+import id.rllyhz.movieappcompose.ui.page.mainPageRoute
 import id.rllyhz.movieappcompose.ui.theme.FoodAppComposeTheme
-import id.rllyhz.movieappcompose.ui.widget.MovieItem
-import id.rllyhz.movieappcompose.vo.UIState
 
 class MainActivity : ComponentActivity() {
     private lateinit var viewModel: MainViewModel
@@ -40,72 +34,35 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    MovieList(viewModel, modifier = Modifier.fillMaxSize())
-                }
-            }
-        }
-    }
-}
+                    val navController = rememberNavController()
 
-@Composable
-fun MovieList(
-    viewModel: MainViewModel,
-    modifier: Modifier = Modifier,
-) {
-    val uiState = viewModel.uiState.collectAsState()
-    val context = LocalContext.current
+                    NavHost(navController = navController, startDestination = mainPageRoute) {
+                        composable(mainPageRoute) {
+                            MainPage(
+                                viewModel = viewModel,
+                                {
+                                    navController.navigate(detailPageRoute)
+                                },
+                                Modifier
+                                    .fillMaxWidth()
+                                    .fillMaxHeight()
+                            )
+                        }
 
-    Box(
-        modifier = modifier
-    ) {
-        when (uiState.value) {
-            UIState.Error -> {
-                Text(
-                    text = "Belum ada data!",
-                    modifier = Modifier.align(Alignment.Center)
-                )
-            }
-            UIState.Loading -> {
-                CircularProgressIndicator(
-                    modifier = Modifier.align(Alignment.Center)
-                )
-            }
-            UIState.HasData -> {
-                val movies = viewModel.movies
-
-                LazyColumn(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .align(Alignment.Center),
-                    contentPadding = PaddingValues(top = 16.dp)
-                ) {
-                    items(movies) {
-                        MovieItem(
-                            it.title,
-                            it.rating,
-                            it.genres,
-                            it.pictureId,
-                            RoundedCornerShape(8.dp),
-                            2.dp,
-                            Color.LightGray,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(620.dp)
-                                .padding(bottom = 16.dp, start = 16.dp, end = 16.dp)
-                                .clickable {
-                                    Toast
-                                        .makeText(
-                                            context,
-                                            "Clicked ${it.id}",
-                                            Toast.LENGTH_SHORT
-                                        )
-                                        .show()
-                                }
-                        )
+                        composable(detailPageRoute) {
+                            DetailPage(
+                                viewModel = viewModel,
+                                {
+                                    navController.navigateUp()
+                                },
+                                Modifier
+                                    .fillMaxWidth()
+                                    .fillMaxHeight()
+                            )
+                        }
                     }
                 }
             }
-            else -> Unit
         }
     }
 }

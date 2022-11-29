@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'id.rllyhz.foodappcompose'
+    namespace 'id.rllyhz.movieappcompose'
     compileSdk 33
 
     defaultConfig {
-        applicationId "id.rllyhz.foodappcompose"
+        applicationId "id.rllyhz.movieappcompose"
         minSdk 21
         targetSdk 33
         versionCode 1
@@ -65,4 +65,8 @@ dependencies {
     // Coroutines
     def androidXCoroutinesVersion = "1.6.1"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$androidXCoroutinesVersion"
+
+    def nav_version = "2.5.3"
+    implementation "androidx.navigation:navigation-compose:$nav_version"
+
 }

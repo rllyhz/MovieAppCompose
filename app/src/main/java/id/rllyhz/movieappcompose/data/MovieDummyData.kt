@@ -1,6 +1,6 @@
 package id.rllyhz.movieappcompose.data
 
-import id.rllyhz.foodappcompose.R
+import id.rllyhz.movieappcompose.R
 import id.rllyhz.movieappcompose.data.model.Movie
 
 fun getAllMovies(): List<Movie> {
@@ -17,7 +17,7 @@ fun getAllMovies(): List<Movie> {
                 overview = "Nearly 5,000 years after he was bestowed with the almighty powers of the Egyptian gods—and imprisoned just as quickly—Black Adam is freed from his earthly tomb, ready to unleash his unique form of justice on the modern world",
                 director = "Jaume Collet-Serra",
                 rating = 7.3f,
-                R.drawable.ic_launcher_background
+                R.drawable.movie_1
             )
         )
 
@@ -31,7 +31,7 @@ fun getAllMovies(): List<Movie> {
                 overview = "Renegade bounty hunter Ryan Swan must carve his way through the Hawaiian crime world to wreak vengeance on the kingpin who murdered his father",
                 director = "Chuck Russell",
                 rating = 5.6f,
-                R.drawable.ic_launcher_background
+                R.drawable.movie_2
             )
         )
 
@@ -45,7 +45,7 @@ fun getAllMovies(): List<Movie> {
                 overview = "Queen Ramonda, Shuri, M’Baku, Okoye and the Dora Milaje fight to protect their nation from intervening world powers in the wake of King T’Challa’s death. As the Wakandans strive to embrace their next chapter, the heroes must band together with the help of War Dog Nakia and Everett Ross and forge a new path for the kingdom of Wakanda",
                 director = "Ryan Coogler",
                 rating = 5.6f,
-                R.drawable.ic_launcher_background
+                R.drawable.movie_3
             )
         )
 
@@ -59,7 +59,7 @@ fun getAllMovies(): List<Movie> {
                 overview = "Emily, who is saddled with student debt and locked out of the job market due to a minor criminal record, gets involved in a credit card scam that pulls her into the criminal underworld of Los Angeles, ultimately leading to deadly consequences",
                 director = "John Patton Ford",
                 rating = 6.9f,
-                R.drawable.ic_launcher_background
+                R.drawable.movie_4
             )
         )
 
@@ -73,7 +73,7 @@ fun getAllMovies(): List<Movie> {
                 overview = "Disillusioned with life in the city, feeling out of place in suburbia, and frustrated that her happily ever after hasn’t been so easy to find, Giselle turns to the magic of Andalasia for help. Accidentally transforming the entire town into a real-life fairy tale and placing her family’s future happiness in jeopardy, she must race against time to reverse the spell and determine what happily ever after truly means to her and her family",
                 director = "Adam Shankman",
                 rating = 7.4f,
-                R.drawable.ic_launcher_background
+                R.drawable.movie_5
             )
         )
 
@@ -87,7 +87,7 @@ fun getAllMovies(): List<Movie> {
                 overview = "Mykola is an eccentric pacifist who wants to be useful to humanity. When the war begins at Donbass, Mykola’s naive world is collapsing as the militants kill his pregnant wife and burn his home to the ground. Recovered, he makes a cardinal decision and gets enlisted in a sniper company. Having met his wife’s killers, he emotionally breaks down and arranges “sniper terror” for the enemy. He’s saved from a senseless death by his instructor who himself gets mortally wounded. The death of a friend leaves a “scar” and Mykola is ready to sacrifice his life",
                 director = "Marian Bushan",
                 rating = 7.5f,
-                R.drawable.ic_launcher_background
+                R.drawable.movie_6
             )
         )
 
@@ -101,7 +101,7 @@ fun getAllMovies(): List<Movie> {
                 overview = "The story of 14th century Czech icon and warlord Jan Zizka who defeated armies of the Teutonic Order and the Holy Roman Empire",
                 director = "Petr Jákl",
                 rating = 7.3f,
-                R.drawable.ic_launcher_background
+                R.drawable.movie_7
             )
         )
 
@@ -115,7 +115,7 @@ fun getAllMovies(): List<Movie> {
                 overview = "After witnessing a bizarre, traumatic incident involving a patient, Dr. Rose Cotter starts experiencing frightening occurrences that she can't explain. As an overwhelming terror begins taking over her life, Rose must confront her troubling past in order to survive and escape her horrifying new reality",
                 director = "Parker Finn",
                 rating = 6.8f,
-                R.drawable.ic_launcher_background
+                R.drawable.movie_8
             )
         )
 
@@ -129,7 +129,7 @@ fun getAllMovies(): List<Movie> {
                 overview = "The story of the Agojie, the all-female unit of warriors who protected the African Kingdom of Dahomey in the 1800s with skills and a fierceness unlike anything the world has ever seen, and General Nanisca as she trains the next generation of recruits and readies them for battle against an enemy determined to destroy their way of life",
                 director = "Gina Prince-Bythewood",
                 rating = 7.9f,
-                R.drawable.ic_launcher_background
+                R.drawable.movie_9
             )
         )
 
@@ -143,7 +143,7 @@ fun getAllMovies(): List<Movie> {
                 overview = "When mysterious green slime monsters start popping out of soccer balls, all-star athletes Zlatan Ibrahimović and Megan Rapinoe must team up with their four biggest fans to stop evil scientist \"Weird Al\" Yankovic from stealing their talent",
                 director = "Mitch Schauer",
                 rating = 7.0f,
-                R.drawable.ic_launcher_background
+                R.drawable.movie_10
             )
         )
 
@@ -157,7 +157,7 @@ fun getAllMovies(): List<Movie> {
                 overview = "It’s time to chase that holiday spirit with Tom and Jerry! With magic in the air, Jerry and his nephew, Tuffy, make a snow mouse that miraculously comes to life! To keep their new friend, Larry the snow mouse from melting, Tuffy and Jerry must race him to the fabled Snowman’s Village. In hot pursuit, Tom and devious Dr. Doublevay have their own plans for Larry’s magic",
                 director = "Darrell Van Citters",
                 rating = 8.0f,
-                R.drawable.ic_launcher_background
+                R.drawable.movie_11
             )
         )
 
@@ -171,7 +171,7 @@ fun getAllMovies(): List<Movie> {
                 overview = "A young girl discovers a secret map to the dreamworld of Slumberland, and with the help of an eccentric outlaw, she traverses dreams and flees nightmares, with the hope that she will be able to see her late father again",
                 director = "Francis Lawrence",
                 rating = 7.9f,
-                R.drawable.ic_launcher_background
+                R.drawable.movie_12
             )
         )
     }

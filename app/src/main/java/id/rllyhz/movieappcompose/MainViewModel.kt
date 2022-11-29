@@ -16,8 +16,9 @@ class MainViewModel(
 ) : ViewModel() {
 
     var movies = listOf<Movie>()
-
     val uiState = MutableStateFlow(UIState.Initial)
+
+    var clickedMovie: Movie? = null
 
     init {
         loadAllRestaurants()
