@@ -1,22 +1,26 @@
 package id.rllyhz.movieappcompose.ui.page
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
 import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -35,6 +39,9 @@ fun DetailPage(
     viewModel: MainViewModel,
     modifier: Modifier = Modifier
 ) {
+    val context = LocalContext.current
+    var isMovieFav by remember { mutableStateOf(viewModel.isClickedMovieFav) }
+
     Column(
         modifier = modifier,
     ) {
@@ -43,14 +50,6 @@ fun DetailPage(
             shouldShowNavigateUp = true,
             onIconBackPressed = {
                 navController.navigateUp()
-            },
-            actions = {
-                IconButton(onClick = { }) {
-                    Icon(
-                        Icons.Default.FavoriteBorder,
-                        contentDescription = ""
-                    )
-                }
             }
         )
 
@@ -174,7 +173,58 @@ fun DetailPage(
                         .shadow(4.dp),
                     contentScale = ContentScale.FillHeight
                 )
+
+                Button(
+                    onClick = {
+                        if (isMovieFav) {
+                            val result = viewModel.deleteFavMovie(movie)
+
+                            if (result > 0) {
+                                showToast(
+                                    context,
+                                    context.getString(R.string.successfully_delete_fav_movies_message)
+                                )
+                                isMovieFav = false
+                            } else {
+                                showToast(
+                                    context,
+                                    context.getString(R.string.failed_to_delete_fav_movies_message)
+                                )
+                            }
+                        } else {
+                            val result = viewModel.addToFavMovie(movie)
+
+                            if (result > 0) {
+                                showToast(
+                                    context,
+                                    context.getString(R.string.successfully_add_fav_movies_message)
+                                )
+                                isMovieFav = true
+                            } else {
+                                showToast(
+                                    context,
+                                    context.getString(R.string.failed_to_add_fav_movies_message)
+                                )
+                            }
+                        }
+                    },
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .padding(28.dp)
+                        .fillMaxWidth()
+                ) {
+                    Icon(
+                        if (isMovieFav) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                        contentDescription = stringResource(id = R.string.btn_favorites)
+                    )
+                    Spacer(modifier = Modifier.size(8.dp))
+                    Text(text = stringResource(id = if (isMovieFav) R.string.btn_delete_favorites else R.string.btn_add_favorites))
+                }
             }
         }
     }
+}
+
+private fun showToast(context: Context, message: String) {
+    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }

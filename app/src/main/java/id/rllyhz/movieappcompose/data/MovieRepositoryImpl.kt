@@ -53,6 +53,9 @@ class MovieRepositoryImpl : MovieRepository() {
     override fun addToFavMovies(movie: Movie): Int =
         addFavMovie(movie)
 
+    override fun isMovieFav(movie: Movie): Boolean =
+        getAllFavMovies().contains(movie)
+
     override fun deleteFromFavMovies(movie: Movie): Int =
         deleteFavMovie(movie)
 

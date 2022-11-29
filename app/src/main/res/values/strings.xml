@@ -8,6 +8,14 @@
     <string name="director">Director: %s</string>
 
     <string name="btn_back">Back</string>
+    <string name="btn_favorites">Favorites</string>
+    <string name="btn_add_favorites">Add to fav</string>
+    <string name="btn_delete_favorites">Delete from fav</string>
 
     <string name="empty_movies_message">No movies yet!</string>
+    <string name="empty_fav_movies_message">No favorite movies yet!</string>
+    <string name="successfully_add_fav_movies_message">Successfully added</string>
+    <string name="failed_to_add_fav_movies_message">Failed to add</string>
+    <string name="successfully_delete_fav_movies_message">Successfully deleted</string>
+    <string name="failed_to_delete_fav_movies_message">Failed to delete</string>
 </resources>

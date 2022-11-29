@@ -22,6 +22,11 @@ class MainViewModel(
 
     var clickedMovie: Movie? = null
 
+    val isClickedMovieFav
+        get() =
+            if (clickedMovie == null) false
+            else repository.isMovieFav(clickedMovie!!)
+
     fun loadAllMovies() {
         if (movies.isNotEmpty()) return
 
@@ -64,13 +69,11 @@ class MainViewModel(
         }
     }
 
-    fun addToFavMovie(movie: Movie) {
+    fun addToFavMovie(movie: Movie): Int =
         repository.addToFavMovies(movie)
-    }
 
-    fun deleteFavMovie(movie: Movie) {
+    fun deleteFavMovie(movie: Movie): Int =
         repository.deleteFromFavMovies(movie)
-    }
 
 
     @Suppress("UNCHECKED_CAST")

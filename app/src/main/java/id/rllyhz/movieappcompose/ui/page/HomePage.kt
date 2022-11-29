@@ -78,30 +78,37 @@ fun HomePage(
                 UIState.HasData -> {
                     val movies = viewModel.movies
 
-                    LazyColumn(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .align(Alignment.Center),
-                        contentPadding = PaddingValues(top = 16.dp)
-                    ) {
-                        items(movies) {
-                            MovieItem(
-                                title = it.title,
-                                rating = it.rating,
-                                genres = it.genres,
-                                pictureId = it.pictureId,
-                                shape = RoundedCornerShape(8.dp),
-                                elevation = 3.dp,
-                                backgroundColor = Color.LightGray,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(620.dp)
-                                    .padding(bottom = 16.dp, start = 16.dp, end = 16.dp)
-                                    .clickable {
-                                        viewModel.clickedMovie = it
-                                        navController.navigate(detailPageRoute)
-                                    }
-                            )
+                    if (movies.isEmpty()) {
+                        Text(
+                            text = stringResource(id = R.string.empty_movies_message),
+                            modifier = Modifier.align(Alignment.Center)
+                        )
+                    } else {
+                        LazyColumn(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .align(Alignment.Center),
+                            contentPadding = PaddingValues(top = 16.dp)
+                        ) {
+                            items(movies) {
+                                MovieItem(
+                                    title = it.title,
+                                    rating = it.rating,
+                                    genres = it.genres,
+                                    pictureId = it.pictureId,
+                                    shape = RoundedCornerShape(8.dp),
+                                    elevation = 3.dp,
+                                    backgroundColor = Color.LightGray,
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(620.dp)
+                                        .padding(bottom = 16.dp, start = 16.dp, end = 16.dp)
+                                        .clickable {
+                                            viewModel.clickedMovie = it
+                                            navController.navigate(detailPageRoute)
+                                        }
+                                )
+                            }
                         }
                     }
                 }

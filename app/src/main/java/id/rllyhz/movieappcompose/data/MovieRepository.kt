@@ -13,6 +13,8 @@ abstract class MovieRepository {
 
     abstract fun addToFavMovies(movie: Movie): Int
 
+    abstract fun isMovieFav(movie: Movie): Boolean
+
     abstract fun deleteFromFavMovies(movie: Movie): Int
 
     abstract fun deleteAllFavMovies(): Boolean
