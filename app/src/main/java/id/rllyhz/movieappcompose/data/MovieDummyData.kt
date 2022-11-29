@@ -198,8 +198,3 @@ fun deleteFavMovie(movie: Movie): Int {
     MoviesData.favMovies.addAll(favMoviesTemp)
     return movie.id
 }
-
-fun deleteAll(): Boolean {
-    MoviesData.favMovies.clear()
-    return true
-}

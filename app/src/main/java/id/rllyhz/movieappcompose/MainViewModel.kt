@@ -1,5 +1,6 @@
 package id.rllyhz.movieappcompose
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -15,8 +16,8 @@ class MainViewModel(
     private val repository: MovieRepository
 ) : ViewModel() {
 
-    var movies = listOf<Movie>()
-    var favMovies = listOf<Movie>()
+    var movies = mutableStateOf<List<Movie>>(emptyList())
+    var favMovies = mutableStateOf<List<Movie>>(emptyList())
     val homeUiState = MutableStateFlow(UIState.Initial)
     val favMoviesUiState = MutableStateFlow(UIState.Initial)
 
@@ -28,7 +29,7 @@ class MainViewModel(
             else repository.isMovieFav(clickedMovie!!)
 
     fun loadAllMovies() {
-        if (movies.isNotEmpty()) return
+        if (movies.value.isNotEmpty()) return
 
         viewModelScope.launch {
             homeUiState.value = UIState.Initial
@@ -37,11 +38,11 @@ class MainViewModel(
                 when (resource) {
                     is Resource.Loading -> {
                         homeUiState.value = UIState.Loading
-                        movies = emptyList()
+                        movies.value = emptyList()
                     }
                     is Resource.Error -> homeUiState.value = UIState.Error
                     is Resource.Success -> {
-                        movies = resource.data!!
+                        movies.value = resource.data!!
                         homeUiState.value = UIState.HasData
                     }
                 }
@@ -57,16 +58,21 @@ class MainViewModel(
                 when (resource) {
                     is Resource.Loading -> {
                         favMoviesUiState.value = UIState.Loading
-                        favMovies = emptyList()
+                        favMovies.value = emptyList()
                     }
                     is Resource.Error -> favMoviesUiState.value = UIState.Error
                     is Resource.Success -> {
-                        favMovies = resource.data!!
+                        favMovies.value = resource.data!!
                         favMoviesUiState.value = UIState.HasData
                     }
                 }
             }
         }
+    }
+
+    fun searchMovies(query: String) {
+        val result = repository.searchMovies(query)
+        movies.value = result
     }
 
     fun addToFavMovie(movie: Movie): Int =

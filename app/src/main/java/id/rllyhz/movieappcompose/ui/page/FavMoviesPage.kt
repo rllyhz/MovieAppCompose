@@ -7,9 +7,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,6 +29,7 @@ fun FavMoviesPage(
     modifier: Modifier = Modifier
 ) {
     val uiState = viewModel.favMoviesUiState.collectAsState()
+    val favMovies by remember { viewModel.favMovies }
 
     LaunchedEffect(true) {
         viewModel.loadAllFavMovies()
@@ -65,15 +64,12 @@ fun FavMoviesPage(
                     )
                 }
                 UIState.HasData -> {
-                    val favMovies = viewModel.favMovies
-
                     if (favMovies.isEmpty()) {
                         Text(
                             text = stringResource(id = R.string.empty_fav_movies_message),
                             modifier = Modifier.align(Alignment.Center)
                         )
                     } else {
-
                         LazyColumn(
                             modifier = Modifier
                                 .fillMaxSize()

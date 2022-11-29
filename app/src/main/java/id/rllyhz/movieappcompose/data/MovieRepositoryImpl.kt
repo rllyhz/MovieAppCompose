@@ -28,6 +28,8 @@ class MovieRepositoryImpl : MovieRepository() {
     override fun searchMovies(query: String): List<Movie> {
         val movies = getAllMovies()
 
+        if (query.isEmpty()) return movies
+
         return movies.filter {
             it.title.lowercase(Locale.getDefault())
                 .contains(query.lowercase(Locale.getDefault()))
@@ -58,9 +60,6 @@ class MovieRepositoryImpl : MovieRepository() {
 
     override fun deleteFromFavMovies(movie: Movie): Int =
         deleteFavMovie(movie)
-
-    override fun deleteAllFavMovies(): Boolean =
-        deleteAll()
 
     companion object {
         private var instance: MovieRepository? = null
