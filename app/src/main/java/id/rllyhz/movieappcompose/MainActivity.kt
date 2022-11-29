@@ -54,6 +54,16 @@ class MainActivity : ComponentActivity() {
                             )
                         }
 
+                        composable(favMoviesPageRoute) {
+                            FavMoviesPage(
+                                navController = navController,
+                                viewModel = viewModel,
+                                Modifier
+                                    .fillMaxWidth()
+                                    .fillMaxHeight()
+                            )
+                        }
+
                         composable(aboutPageRoute) {
                             AboutPage(
                                 navController = navController,

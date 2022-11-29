@@ -10,6 +10,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -42,6 +43,10 @@ fun HomePage(
             stringResource(id = R.string.home_title),
             shouldShowNavigateUp = false,
             actions = {
+                IconButton(onClick = { navController.navigate(favMoviesPageRoute) }) {
+                    Icon(Icons.Default.Favorite, contentDescription = favMoviesPageRoute)
+                }
+
                 IconButton(onClick = { navController.navigate(aboutPageRoute) }) {
                     Icon(Icons.Default.Person, contentDescription = aboutPageRoute)
                 }
@@ -56,7 +61,7 @@ fun HomePage(
             when (uiState.value) {
                 UIState.Error -> {
                     Text(
-                        text = "Belum ada data!",
+                        text = stringResource(id = R.string.empty_movies_message),
                         modifier = Modifier.align(Alignment.Center)
                     )
                 }
@@ -76,13 +81,13 @@ fun HomePage(
                     ) {
                         items(movies) {
                             MovieItem(
-                                it.title,
-                                it.rating,
-                                it.genres,
-                                it.pictureId,
-                                RoundedCornerShape(8.dp),
-                                2.dp,
-                                Color.LightGray,
+                                title = it.title,
+                                rating = it.rating,
+                                genres = it.genres,
+                                pictureId = it.pictureId,
+                                shape = RoundedCornerShape(8.dp),
+                                elevation = 3.dp,
+                                backgroundColor = Color.LightGray,
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .height(620.dp)

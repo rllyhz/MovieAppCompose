@@ -2,9 +2,12 @@
     <string name="app_name">MovieAppCompose</string>
     <string name="home_title">Movies</string>
     <string name="detail_title">Movie Detail</string>
+    <string name="fav_movies_title">Favorite Movies</string>
     <string name="about_title">About</string>
 
     <string name="director">Director: %s</string>
 
     <string name="btn_back">Back</string>
+
+    <string name="empty_movies_message">No movies yet!</string>
 </resources>

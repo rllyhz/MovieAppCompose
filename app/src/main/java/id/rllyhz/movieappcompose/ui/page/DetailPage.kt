@@ -8,6 +8,8 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -45,7 +47,7 @@ fun DetailPage(
             actions = {
                 IconButton(onClick = { }) {
                     Icon(
-                        painter = painterResource(id = R.drawable.ic_fav_outlined),
+                        Icons.Default.FavoriteBorder,
                         contentDescription = ""
                     )
                 }
