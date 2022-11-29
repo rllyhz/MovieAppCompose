@@ -44,6 +44,8 @@ fun SimpleAppBar(
                 Spacer(modifier = Modifier.size(16.dp))
             }
 
+            if (!shouldShowNavigateUp) Spacer(modifier = Modifier.size(12.dp))
+
             Text(
                 text = title,
                 style = MaterialTheme.typography.h1,
