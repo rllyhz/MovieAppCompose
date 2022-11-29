@@ -8,6 +8,7 @@ import id.rllyhz.movieappcompose.data.MovieRepository
 import id.rllyhz.movieappcompose.data.model.Movie
 import id.rllyhz.movieappcompose.vo.Resource
 import id.rllyhz.movieappcompose.vo.UIState
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -71,8 +72,13 @@ class MainViewModel(
     }
 
     fun searchMovies(query: String) {
-        val result = repository.searchMovies(query)
-        movies.value = result
+        homeUiState.value = UIState.Loading
+        viewModelScope.launch {
+            val result = repository.searchMovies(query)
+            delay(500)
+            movies.value = result
+            homeUiState.value = UIState.HasData
+        }
     }
 
     fun addToFavMovie(movie: Movie): Int =
