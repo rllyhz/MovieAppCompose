@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
                         composable(mainPageRoute) {
                             MainPage(
                                 viewModel = viewModel,
-                                {
+                                onItemClickCallback = {
                                     navController.navigate(detailPageRoute)
                                 },
                                 Modifier
@@ -52,7 +52,7 @@ class MainActivity : ComponentActivity() {
                         composable(detailPageRoute) {
                             DetailPage(
                                 viewModel = viewModel,
-                                {
+                                onNavigateUpCallback = {
                                     navController.navigateUp()
                                 },
                                 Modifier
