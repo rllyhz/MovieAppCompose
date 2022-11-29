@@ -6,6 +6,8 @@
     <string name="about_title">About</string>
 
     <string name="director">Director: %s</string>
+    <string name="about_name">Rully Ihza Mahendra</string>
+    <string name="about_email">rullyihza00@gmail.com</string>
 
     <string name="btn_back">Back</string>
     <string name="btn_favorites">Favorites</string>
