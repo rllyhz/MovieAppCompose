@@ -16,30 +16,60 @@ class MainViewModel(
 ) : ViewModel() {
 
     var movies = listOf<Movie>()
-    val uiState = MutableStateFlow(UIState.Initial)
+    var favMovies = listOf<Movie>()
+    val homeUiState = MutableStateFlow(UIState.Initial)
+    val favMoviesUiState = MutableStateFlow(UIState.Initial)
 
     var clickedMovie: Movie? = null
 
-    init {
-        loadAllRestaurants()
-    }
+    fun loadAllMovies() {
+        if (movies.isNotEmpty()) return
 
-    private fun loadAllRestaurants() {
         viewModelScope.launch {
+            homeUiState.value = UIState.Initial
+
             repository.getMovies().collectLatest { resource ->
                 when (resource) {
                     is Resource.Loading -> {
-                        uiState.value = UIState.Loading
+                        homeUiState.value = UIState.Loading
                         movies = emptyList()
                     }
-                    is Resource.Error -> uiState.value = UIState.Error
+                    is Resource.Error -> homeUiState.value = UIState.Error
                     is Resource.Success -> {
                         movies = resource.data!!
-                        uiState.value = UIState.HasData
+                        homeUiState.value = UIState.HasData
                     }
                 }
             }
         }
+    }
+
+    fun loadAllFavMovies() {
+        viewModelScope.launch {
+            favMoviesUiState.value = UIState.Initial
+
+            repository.getFavMovies().collectLatest { resource ->
+                when (resource) {
+                    is Resource.Loading -> {
+                        favMoviesUiState.value = UIState.Loading
+                        favMovies = emptyList()
+                    }
+                    is Resource.Error -> favMoviesUiState.value = UIState.Error
+                    is Resource.Success -> {
+                        favMovies = resource.data!!
+                        favMoviesUiState.value = UIState.HasData
+                    }
+                }
+            }
+        }
+    }
+
+    fun addToFavMovie(movie: Movie) {
+        repository.addToFavMovies(movie)
+    }
+
+    fun deleteFavMovie(movie: Movie) {
+        repository.deleteFromFavMovies(movie)
     }
 
 

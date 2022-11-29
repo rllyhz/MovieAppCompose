@@ -13,6 +13,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,7 +35,11 @@ fun HomePage(
     viewModel: MainViewModel,
     modifier: Modifier = Modifier
 ) {
-    val uiState = viewModel.uiState.collectAsState()
+    val uiState = viewModel.homeUiState.collectAsState()
+
+    LaunchedEffect(true) {
+        viewModel.loadAllMovies()
+    }
 
     Column(
         modifier = modifier

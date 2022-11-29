@@ -182,19 +182,24 @@ fun getAllMovies(): List<Movie> =
 
 fun getAllFavMovies(): List<Movie> = MoviesData.favMovies
 
-fun addFavMovie(movie: Movie) {
-    if (!MoviesData.favMovies.contains(movie)) {
+fun addFavMovie(movie: Movie): Int {
+    return if (!MoviesData.favMovies.contains(movie)) {
         MoviesData.favMovies.add(movie)
+        movie.id
+    } else {
+        -1
     }
 }
 
-fun deleteFromFavMovie(movie: Movie) {
+fun deleteFavMovie(movie: Movie): Int {
     val favMoviesTemp = MoviesData.favMovies.filter { it.id != movie.id }
 
     MoviesData.favMovies.clear()
     MoviesData.favMovies.addAll(favMoviesTemp)
+    return movie.id
 }
 
-fun deleteAllFavMovies() {
+fun deleteAll(): Boolean {
     MoviesData.favMovies.clear()
+    return true
 }
