@@ -21,6 +21,7 @@ fun SimpleAppBar(
     elevation: Dp = 4.dp,
     backgroundColor: Color = MaterialTheme.colors.primary,
     onIconBackPressed: (() -> Unit)? = null,
+    actions: @Composable (RowScope.() -> Unit) = {},
 ) {
     Surface(
         modifier = Modifier
@@ -47,6 +48,16 @@ fun SimpleAppBar(
                 text = title,
                 style = MaterialTheme.typography.h1,
                 fontSize = 20.sp,
+            )
+
+            Row(
+                Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth()
+                    .padding(end = 8.dp),
+                horizontalArrangement = Arrangement.End,
+                verticalAlignment = Alignment.CenterVertically,
+                content = actions
             )
         }
     }

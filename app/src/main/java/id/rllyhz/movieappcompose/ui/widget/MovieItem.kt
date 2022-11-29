@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -71,7 +72,8 @@ fun MovieItem(
                     color = Color.White
                 )
                 Text(
-                    text = title, style = MaterialTheme.typography.h1,
+                    text = title,
+                    style = MaterialTheme.typography.h1.copy(fontWeight = FontWeight.SemiBold),
                     fontSize = 26.sp,
                     color = Color.White
                 )

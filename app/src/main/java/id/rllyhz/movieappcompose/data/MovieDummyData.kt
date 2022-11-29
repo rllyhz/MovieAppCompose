@@ -3,10 +3,8 @@ package id.rllyhz.movieappcompose.data
 import id.rllyhz.movieappcompose.R
 import id.rllyhz.movieappcompose.data.model.Movie
 
-fun getAllMovies(): List<Movie> {
-    val movies = arrayListOf<Movie>()
-
-    with(movies) {
+private object MoviesData {
+    val movies = arrayListOf<Movie>().apply {
         add(
             Movie(
                 id = 1,
@@ -176,5 +174,27 @@ fun getAllMovies(): List<Movie> {
         )
     }
 
-    return movies
+    val favMovies = arrayListOf<Movie>()
+}
+
+fun getAllMovies(): List<Movie> =
+    MoviesData.movies
+
+fun getAllFavMovies(): List<Movie> = MoviesData.favMovies
+
+fun addFavMovie(movie: Movie) {
+    if (!MoviesData.favMovies.contains(movie)) {
+        MoviesData.favMovies.add(movie)
+    }
+}
+
+fun deleteFromFavMovie(movie: Movie) {
+    val favMoviesTemp = MoviesData.favMovies.filter { it.id != movie.id }
+
+    MoviesData.favMovies.clear()
+    MoviesData.favMovies.addAll(favMoviesTemp)
+}
+
+fun deleteAllFavMovies() {
+    MoviesData.favMovies.clear()
 }

@@ -4,5 +4,7 @@
     <string name="detail_title">Movie Detail</string>
     <string name="about_title">About</string>
 
+    <string name="director">Director: %s</string>
+
     <string name="btn_back">Back</string>
 </resources>

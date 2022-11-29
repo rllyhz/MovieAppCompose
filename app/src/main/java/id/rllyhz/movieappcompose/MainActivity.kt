@@ -13,10 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import id.rllyhz.movieappcompose.data.MovieRepositoryImpl
-import id.rllyhz.movieappcompose.ui.page.DetailPage
-import id.rllyhz.movieappcompose.ui.page.MainPage
-import id.rllyhz.movieappcompose.ui.page.detailPageRoute
-import id.rllyhz.movieappcompose.ui.page.mainPageRoute
+import id.rllyhz.movieappcompose.ui.page.*
 import id.rllyhz.movieappcompose.ui.theme.FoodAppComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -36,13 +33,11 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val navController = rememberNavController()
 
-                    NavHost(navController = navController, startDestination = mainPageRoute) {
-                        composable(mainPageRoute) {
-                            MainPage(
+                    NavHost(navController = navController, startDestination = homePageRoute) {
+                        composable(homePageRoute) {
+                            HomePage(
+                                navController = navController,
                                 viewModel = viewModel,
-                                onItemClickCallback = {
-                                    navController.navigate(detailPageRoute)
-                                },
                                 Modifier
                                     .fillMaxWidth()
                                     .fillMaxHeight()
@@ -51,10 +46,17 @@ class MainActivity : ComponentActivity() {
 
                         composable(detailPageRoute) {
                             DetailPage(
+                                navController = navController,
                                 viewModel = viewModel,
-                                onNavigateUpCallback = {
-                                    navController.navigateUp()
-                                },
+                                Modifier
+                                    .fillMaxWidth()
+                                    .fillMaxHeight()
+                            )
+                        }
+
+                        composable(aboutPageRoute) {
+                            AboutPage(
+                                navController = navController,
                                 Modifier
                                     .fillMaxWidth()
                                     .fillMaxHeight()
