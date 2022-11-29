@@ -43,7 +43,7 @@ fun HomePage(
             shouldShowNavigateUp = false,
             actions = {
                 IconButton(onClick = { navController.navigate(aboutPageRoute) }) {
-                    Icon(Icons.Default.Person, contentDescription = "about_page")
+                    Icon(Icons.Default.Person, contentDescription = aboutPageRoute)
                 }
             }
         )
