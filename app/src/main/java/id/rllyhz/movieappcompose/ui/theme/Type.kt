@@ -1,4 +1,4 @@
-package id.rllyhz.foodappcompose.ui.theme
+package id.rllyhz.movieappcompose.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

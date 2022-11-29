@@ -1,4 +1,4 @@
-package id.rllyhz.foodappcompose.vo
+package id.rllyhz.movieappcompose.vo
 
 sealed class Resource<out T>(
     val data: T? = null,

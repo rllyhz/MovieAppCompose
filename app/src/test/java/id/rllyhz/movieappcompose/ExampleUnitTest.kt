@@ -1,4 +1,4 @@
-package id.rllyhz.foodappcompose
+package id.rllyhz.movieappcompose
 
 import org.junit.Test
 
