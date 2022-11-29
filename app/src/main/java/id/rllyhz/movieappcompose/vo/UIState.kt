@@ -1,6 +1,6 @@
 package id.rllyhz.movieappcompose.vo
 
-enum class UiState {
+enum class UIState {
     Initial,
     Loading,
     Error,

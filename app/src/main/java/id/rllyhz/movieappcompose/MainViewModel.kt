@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import id.rllyhz.movieappcompose.data.MovieRepository
 import id.rllyhz.movieappcompose.data.model.Movie
 import id.rllyhz.movieappcompose.vo.Resource
-import id.rllyhz.movieappcompose.vo.UiState
+import id.rllyhz.movieappcompose.vo.UIState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -15,9 +15,9 @@ class MainViewModel(
     private val repository: MovieRepository
 ) : ViewModel() {
 
-    var restaurants = listOf<Movie>()
+    var movies = listOf<Movie>()
 
-    val uiState = MutableStateFlow(UiState.Initial)
+    val uiState = MutableStateFlow(UIState.Initial)
 
     init {
         loadAllRestaurants()
@@ -28,13 +28,13 @@ class MainViewModel(
             repository.getMovies().collectLatest { resource ->
                 when (resource) {
                     is Resource.Loading -> {
-                        uiState.value = UiState.Loading
-                        restaurants = emptyList()
+                        uiState.value = UIState.Loading
+                        movies = emptyList()
                     }
-                    is Resource.Error -> uiState.value = UiState.Error
+                    is Resource.Error -> uiState.value = UIState.Error
                     is Resource.Success -> {
-                        restaurants = resource.data!!
-                        uiState.value = UiState.HasData
+                        movies = resource.data!!
+                        uiState.value = UIState.HasData
                     }
                 }
             }
